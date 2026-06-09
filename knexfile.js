@@ -10,6 +10,11 @@ module.exports = {
       filename: "./data/book-tracker.db3",
     },
     useNullAsDefault: true,
+    pool: {
+      afterCreate: (conn, done) => {
+        conn.run("PRAGMA foreign_keys = ON", done);
+      },
+    },
     migrations: {
       directory: "./data/migrations",
     },
